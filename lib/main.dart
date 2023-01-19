@@ -1,16 +1,13 @@
+import 'package:allcare/pages/seatChart.dart';
 import 'package:flutter/material.dart';
-import './style.dart' as style;
 import 'package:animated_overflow/animated_overflow.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/cupertino.dart';
 import 'notification.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:allcare/firebase_options.dart';
 
 import './style.dart' as style;
-import './pages/letter.dart';
-import './pages/notice.dart';
+
 
 
 
@@ -24,9 +21,13 @@ void main() async{
 
   runApp(
       MaterialApp(
-          debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         theme: style.theme,
-        home: MyApp()
+        initialRoute: '/',
+        routes: {
+          '/' : (context) => MyApp(),
+          '/seat' : (context) => SeatChart(),
+        },
       )
   );
 }
@@ -77,7 +78,9 @@ class _MyAppState extends State<MyApp> {
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 25),
                   height: 57,
                   child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.pushNamed(context, '/seat');
+                    },
                     child: Text(buttonName[i - 1], style: style.normalText,),
                   ),
                 ),
