@@ -40,7 +40,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var buttonName = ['자리 배치도', '급식 현황'];
+  var buttonName = ['자리 배치도', '급식신청 현황', '공지사항 작성', '체크리스트', '재고확인'];
 
   @override
   void initState() {
@@ -53,14 +53,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      floatingActionButton:
-      FloatingActionButton.extended(
-        onPressed: (){Navigator.push(context, CupertinoPageRoute(builder: (c) => letterUI() ));},
-        label: Text('익명 편지', style: style.floatingText),
-        icon: Icon(Icons.mail, color: Colors.white, size: 30),
-        backgroundColor: Color(0xff0B01A2),
-      ),
-
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBar(
@@ -70,18 +62,6 @@ class _MyAppState extends State<MyApp> {
               Text('관리자 전용앱'),
             ],
           ),
-
-          actions: [
-            Stack(
-              children: [
-                IconButton(
-                    icon: Icon(Icons.notifications, size: 33,), onPressed: (){showNotification(); Navigator.push(context, CupertinoPageRoute(builder: (c) => noticeUI() ));}
-                ),
-                AlertIconUI()
-              ],
-            ),
-          ],
-
         ),
       ),
 
