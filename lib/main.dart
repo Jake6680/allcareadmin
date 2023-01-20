@@ -1,7 +1,6 @@
 import 'package:allcare/pages/seatChart.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_overflow/animated_overflow.dart';
-import 'notification.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:allcare/firebase_options.dart';
@@ -46,7 +45,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initNotification();
     FlutterNativeSplash.remove();
   }
 
@@ -92,8 +90,6 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class NoticeAlert extends StatelessWidget {
   const NoticeAlert({Key? key}) : super(key: key);

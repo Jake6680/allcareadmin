@@ -19,6 +19,7 @@ var theme = ThemeData(
 
 var barText = TextStyle(color:Color(0xffffffff), fontWeight: FontWeight.w500);
 var normalText = TextStyle(color:Color(0xffffffff), fontSize: 20, fontWeight: FontWeight.w600 );
+var deskseatname = TextStyle(color:Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.w600 );
 var normalTextDark = TextStyle(color:Color(0xff000000), fontSize: 20, fontWeight: FontWeight.w600 );
 var floatingText = TextStyle(fontSize: 15, fontWeight: FontWeight.w600);
 var letterMainText = TextStyle( fontSize: 18, fontWeight: FontWeight.w400 );
