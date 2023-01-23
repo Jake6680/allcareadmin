@@ -1,11 +1,13 @@
-import 'package:allcare/pages/seatChart.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_overflow/animated_overflow.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:allcare/firebase_options.dart';
+import 'package:flutter/services.dart';
 
 import './style.dart' as style;
+import 'package:allcare/pages/seatChart_1.dart';
+import 'package:allcare/pages/seatChart_2.dart';
 
 
 
@@ -25,7 +27,8 @@ void main() async{
         initialRoute: '/',
         routes: {
           '/' : (context) => MyApp(),
-          '/seat' : (context) => SeatChart(),
+          '/seat_1' : (context) => SeatChart(),
+          '/seat_2' : (context) => SeatChart2(),
         },
       )
   );
@@ -40,11 +43,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var buttonName = ['자리 배치도', '급식신청 현황', '공지사항 작성', '체크리스트', '재고확인'];
+  var buttonName = ['1관 자리 배치도', '2관 자리 배치도', '급식신청 현황', '공지사항 작성', '체크리스트', '재고확인'];
 
   @override
   void initState() {
     super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     FlutterNativeSplash.remove();
   }
 
@@ -77,7 +81,11 @@ class _MyAppState extends State<MyApp> {
                   height: 57,
                   child: ElevatedButton(
                     onPressed: (){
-                      Navigator.pushNamed(context, '/seat');
+                      if (buttonName[i - 1] == '1관 자리 배치도'){
+                        Navigator.pushNamed(context, '/seat_1');
+                      }else if (buttonName[i - 1] == '2관 자리 배치도'){
+                        Navigator.pushNamed(context, '/seat_2');
+                      }
                     },
                     child: Text(buttonName[i - 1], style: style.normalText,),
                   ),
@@ -104,21 +112,26 @@ class NoticeAlert extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(
                 width: 2,
-                color: Color(0xffff0000)
+                color: Colors.black
             ),
             borderRadius: BorderRadius.circular(15),
             color: Color(0xffffffff)
         ),
         child: Row(
           children: [
-            Container(margin: EdgeInsets.fromLTRB(7, 0, 5, 0) ,child: Image(image: AssetImage("assets/speaker.png"),width: 30,)),
+            Container(margin: EdgeInsets.fromLTRB(7, 0, 5, 0) , child: Row(
+              children: [
+                Icon(Icons.alarm, size: 30),
+                Text('14:00',style: style.black22,)
+              ],
+            )),
             AnimatedOverflow(
               animatedOverflowDirection: AnimatedOverflowDirection.HORIZONTAL,
               maxWidth: width1 / 1.5,
               padding: 0,
               speed: 70.0,
               child: Text(
-                "긴급공지 쓰는곳... on/off 설정 가능!",
+                "출석체크 부탁드립니다.",
                 style: style.speakerText,
                 maxLines: 1,
                 overflow: TextOverflow.visible,
