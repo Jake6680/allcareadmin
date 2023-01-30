@@ -4,12 +4,19 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:allcare/firebase_options.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 
 import './style.dart' as style;
+import 'package:allcare/controller/maincontroller.dart';
+import 'package:allcare/pages/lunchCheck.dart';
 import 'package:allcare/pages/seatChart_1.dart';
 import 'package:allcare/pages/seatChart_2.dart';
+import 'package:allcare/pages/dialogwidget.dart' as dialoguse;
 
-
+final authLogin = FirebaseAuth.instance;
+final firestore = FirebaseFirestore.instance;
 
 
 void main() async{
@@ -29,6 +36,7 @@ void main() async{
           '/' : (context) => MyApp(),
           '/seat_1' : (context) => SeatChart(),
           '/seat_2' : (context) => SeatChart2(),
+          '/lunch' : (context) => LunchUI(),
         },
       )
   );
@@ -43,19 +51,43 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var buttonName = ['1관 자리 배치도', '2관 자리 배치도', '급식신청 현황', '공지사항 작성', '체크리스트', '재고확인'];
+  List<String> buttonName = ['1관 자리 배치도', '2관 자리 배치도', '급식신청 현황', '공지사항 작성', '체크리스트', '재고확인'];
+  String textLoginCode = '';
 
   @override
   void initState() {
     super.initState();
+    adminLogin();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     FlutterNativeSplash.remove();
+  }
+
+
+  adminLogin() async{
+    try {
+      await authLogin.signInWithEmailAndPassword(
+          email: 'admin@studyallcare.com',
+          password: 'admin123'
+      );
+      getfirebaseinit();
+    } catch(e){
+      dialoguse.showSnackBar(context, '알수없는오류');
+    }
+  }
+
+  getfirebaseinit () async{
+    try {
+      var textLoginCode = await firestore.collection('Code').doc('adminCode').get();
+      FirstSeatController.to.adminCode = textLoginCode['code'];
+    }catch(e){
+      print(e);
+      dialoguse.showSnackBar(context, '알수없는오류');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBar(
@@ -85,6 +117,8 @@ class _MyAppState extends State<MyApp> {
                         Navigator.pushNamed(context, '/seat_1');
                       }else if (buttonName[i - 1] == '2관 자리 배치도'){
                         Navigator.pushNamed(context, '/seat_2');
+                      }else if (buttonName[i - 1] == '급식신청 현황'){
+                        Navigator.pushNamed(context, '/lunch');
                       }
                     },
                     child: Text(buttonName[i - 1], style: style.normalText,),

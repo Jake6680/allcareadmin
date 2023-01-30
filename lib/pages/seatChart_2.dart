@@ -33,10 +33,10 @@ class _SeatChart2State extends State<SeatChart2> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: (){
-                        print('aa');
+                        Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),),),
-                      child: Icon(Icons.arrow_back, size: 30,),
+                      child: Icon(Icons.arrow_back, size: 30, color: Colors.white,),
                     ),
                   ),
                   SizedBox(
@@ -119,107 +119,139 @@ class _SeatChart2State extends State<SeatChart2> {
                   Flexible(
                     flex: 1,
                     fit: FlexFit.tight,
-                    child: MasonryGridView.count(
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 4,
-                      crossAxisSpacing: 4,
-                      itemCount: 12,
-                      itemBuilder: (context, index) {
-                        if (index == 5){
-                          return Column(
+                    child: GestureDetector(
+                      onLongPress: (){
+                        showDialog(context: context, builder: (context) => ClickList(backColor : 0xff008D62, itemCount : 12, startCount : 0));
+                      },
+                      child: MasonryGridView.count(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 4,
+                        crossAxisSpacing: 4,
+                        itemCount: 12,
+                        itemBuilder: (context, index) {
+                          if (index == 5){
+                            return Column(
+                              children: [
+                                Container(color: Colors.white.withOpacity(0), height: 12,),
+                                BoxWidget(yHeight: 59, backColor: 0xff008D62, boxindex: index, boxplus: 0, oneline: true,)
+                              ],
+                            );
+                          }else if (index == 10){
+                            return Column(
                               children: [
                                 Container(
-                                color: Colors.white.withOpacity(0),
-                                height: 20,),
-                                BoxWidget(yHeight: 56, backColor: 0xff008D62, boxindex: index, boxplus: 0, oneline: true,)
+                                  color: Colors.white.withOpacity(0),
+                                  height: 12,),
+                                BoxWidget(yHeight: 59, backColor: 0xff008D62, boxindex: index, boxplus: 0, oneline: true,)
                               ],
-                          );
-                        }else if (index == 10){
-                          return Column(
-                            children: [
-                              Container(
-                                color: Colors.white.withOpacity(0),
-                                height: 40,),
-                              BoxWidget(yHeight: 56, backColor: 0xff008D62, boxindex: index, boxplus: 0, oneline: true,)
-                            ],
-                          );
-                        }else {
-                          return BoxWidget(yHeight: 56, backColor: 0xff008D62, boxindex: index, boxplus: 0, oneline: true,);
-                        }
-                      },
+                            );
+                          }else {
+                            return BoxWidget(yHeight: 59, backColor: 0xff008D62, boxindex: index, boxplus: 0, oneline: true,);
+                          }
+                        },
+                      ),
                     ),),
                   SizedBox(width: 100,),
                   Flexible(
                     flex: 2,
                     fit: FlexFit.tight,
-                    child: MasonryGridView.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 4,
-                      crossAxisSpacing: 4,
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        if (index == 0){
-                          return Container(
-                              color: Colors.white.withOpacity(0),
-                              height: 63,
-                          );
-                        }else{
-                          return BoxWidget(yHeight: 63, backColor: 0xff8977AD, boxindex: index, boxplus: 11, boxplusend: 9,);
-                        }
+                    child: GestureDetector(
+                      onLongPress: (){
+                        showDialog(context: context, builder: (context) => ClickList(backColor : 0xff8977AD, itemCount : 10, startCount : 11, hangCount : 2));
                       },
-                    ),),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height - 80,
+                          child: MasonryGridView.count(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 4,
+                            crossAxisSpacing: 4,
+                            itemCount: 20,
+                            itemBuilder: (context, index) {
+                              if (index == 0){
+                                return Container(
+                                  color: Colors.white.withOpacity(0),
+                                  height: 63,
+                                );
+                              }else{
+                                return BoxWidget(yHeight: 63, backColor: 0xff8977AD, boxindex: index, boxplus: 11, boxplusend: 9,);
+                              }
+                            },
+                          ),
+                        ),
+                      ),
+                    )
+                  ),
                   SizedBox(width: 100,),
                   Flexible(
                     flex: 2,
                     fit: FlexFit.tight,
-                    child: MasonryGridView.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 4,
-                      crossAxisSpacing: 4,
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        if (index == 0){
-                          return Container(
-                            color: Colors.white.withOpacity(0),
-                            height: 63,
-                          );
-                        }else{
-                          return BoxWidget(yHeight: 63, backColor: 0xff8977AD, boxindex: index, boxplus: 30, boxplusend: 9,);
-                        }
+                    child: GestureDetector(
+                      onLongPress: (){
+                        showDialog(context: context, builder: (context) => ClickList(backColor : 0xff8977AD, itemCount : 10, startCount : 30, hangCount : 2));
                       },
-                    ),),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height - 80,
+                          child: MasonryGridView.count(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 4,
+                            crossAxisSpacing: 4,
+                            itemCount: 20,
+                            itemBuilder: (context, index) {
+                              if (index == 0){
+                                return Container(
+                                  color: Colors.white.withOpacity(0),
+                                  height: 63,
+                                );
+                              }else{
+                                return BoxWidget(yHeight: 63, backColor: 0xff8977AD, boxindex: index, boxplus: 30, boxplusend: 9,);
+                              }
+                            },
+                          ),
+                        )
+                      ),
+                    )
+                  ),
                   SizedBox(width: 100,),
                   Flexible(
                     flex: 1,
                     fit: FlexFit.tight,
-                    child: MasonryGridView.count(
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 4,
-                      crossAxisSpacing: 4,
-                      itemCount: 13,
-                      itemBuilder: (context, index) {
-                        if (index == 5){
-                          return Column(
-                            children: [
-                              Container(
-                                color: Colors.white.withOpacity(0),
-                                height: 8,),
-                              BoxWidget(yHeight: 55, backColor: 0xff008D62, boxindex: index, boxplus: 50, oneline: true,)
-                            ],
-                          );
-                        }else if(index == 11){
-                          return Column(
-                            children: [
-                              Container(
-                                color: Colors.white.withOpacity(0),
-                                height: 8,),
-                              BoxWidget(yHeight: 55, backColor: 0xff008D62, boxindex: index, boxplus: 50, oneline: true,)
-                            ],
-                          );
-                        }else {
-                          return BoxWidget(yHeight: 55, backColor: 0xff008D62, boxindex: index, boxplus: 50, oneline: true,);
-                        }
+                    child: GestureDetector(
+                      onLongPress: (){
+                        showDialog(context: context, builder: (context) => ClickList(backColor : 0xff008D62, itemCount : 13, startCount : 50));
                       },
+                      child: MasonryGridView.count(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 4,
+                        crossAxisSpacing: 4,
+                        itemCount: 13,
+                        itemBuilder: (context, index) {
+                          if (index == 5){
+                            return Column(
+                              children: [
+                                Container(
+                                  color: Colors.white.withOpacity(0),
+                                  height: 8,),
+                                BoxWidget(yHeight: 55, backColor: 0xff008D62, boxindex: index, boxplus: 50, oneline: true,)
+                              ],
+                            );
+                          }else if(index == 11){
+                            return Column(
+                              children: [
+                                Container(
+                                  color: Colors.white.withOpacity(0),
+                                  height: 8,),
+                                BoxWidget(yHeight: 55, backColor: 0xff008D62, boxindex: index, boxplus: 50, oneline: true,)
+                              ],
+                            );
+                          }else {
+                            return BoxWidget(yHeight: 55, backColor: 0xff008D62, boxindex: index, boxplus: 50, oneline: true,);
+                          }
+                        },
+                      ),
                     ),),
                 ],
               )
@@ -242,10 +274,9 @@ class BoxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int boxnum = oneline == true ? boxindex + boxplus : boxindex.isEven ? boxindex - (boxindex ~/ 2) + boxplus : boxindex - (boxindex ~/ 2) + boxplus + boxplusend ;
-    int intyHeight = int.parse(yHeight);
     return Container(
     color: Color(backColor),
-    height: intyHeight,
+    height: yHeight == 59 ? 59 : yHeight == 63 ? 63 : yHeight == 55 ? 55 : 59,
     child: Stack(
         children: [
           Container(
@@ -267,4 +298,128 @@ class BoxWidget extends StatelessWidget {
     );
   }
 }
+
+
+class ClickList extends StatelessWidget {
+  const ClickList({Key? key, this.backColor, this.itemCount, this.startCount, this.hangCount}) : super(key: key);
+  final itemCount;
+  final backColor;
+  final startCount;
+  final hangCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      titlePadding: EdgeInsets.zero,
+      title: SizedBox(
+        height: 30,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(width: 30,),
+            Text( hangCount == 2 ? '${startCount + 1}~${startCount + (itemCount * 2) - 1}' : '$startCount~${startCount + itemCount - 1}',style: style.black20, textAlign: TextAlign.center,),
+            IconButton(onPressed: (){
+              Navigator.pop(context);
+            }, icon: Icon(Icons.clear, size: 30,), color: Colors.black,)
+          ],
+        ),
+      ),
+      content: SizedBox(
+        width: hangCount == 2 ? 600 : 300,
+        child: ListView.builder(
+          itemCount: itemCount,
+          itemBuilder: (_, i) {
+            if (hangCount == 2){
+                return Row(
+                  children: [
+                    Flexible(
+                        fit: FlexFit.tight,
+                        child: i == 0
+                            ? Container(margin: EdgeInsets.fromLTRB(0, 0, 10, 15), height: 70,)
+                            : Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 10, itemCount - 1 == i ? 0 : 15),
+                            height: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(backColor),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              onPressed: (){},
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text('${startCount + i}',style: style.deskseatname,),
+                                  Icon(Icons.edit, size: 30,),
+                                  Text('OOO', style: style.deskseatname,)
+                                ],
+                              ),
+                            )
+                        )
+                    ),
+                    Flexible(
+                        fit: FlexFit.tight,
+                        child: Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, itemCount - 1 == i ? 0 : 15),
+                            height: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(backColor),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              onPressed: (){},
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text('${startCount + i + itemCount}',style: style.deskseatname,),
+                                  Icon(Icons.edit, size: 30,),
+                                  Text('OOO', style: style.deskseatname,)
+                                ],
+                              ),
+                            )
+                        )
+                    ),
+                  ],
+                );
+            }else{
+              return Column(
+                children: [
+                  Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, itemCount - 1 == i ? 0 : 15),
+                      height: 70,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(backColor),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                        onPressed: (){},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text('${startCount + i}',style: style.deskseatname,),
+                            Icon(Icons.edit, size: 30,),
+                            Text('OOO', style: style.deskseatname,)
+                          ],
+                        ),
+                      )
+                  ),
+                  Container(
+                    height: i == 4 ? 30 : itemCount == 13 ? i == 10 ? 30 : 0 : i == 9 ? 30 : 0,
+                  )
+                ],
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
 

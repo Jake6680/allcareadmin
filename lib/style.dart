@@ -29,4 +29,7 @@ const dialogCheckText = TextStyle(fontSize: 17, fontWeight: FontWeight.w600);
 const speakerText = TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold);
 const noticeIconText = TextStyle(fontSize: 10,fontWeight: FontWeight.w600);
 const black22 = TextStyle(fontSize: 22,color: Colors.black, fontWeight: FontWeight.w600);
+const black20 = TextStyle(fontSize: 20,color: Colors.black, fontWeight: FontWeight.w600);
+const white20 = TextStyle(fontSize: 20,color: Colors.white, fontWeight: FontWeight.w600);
+const white17 = TextStyle(fontSize: 17,color: Colors.white, fontWeight: FontWeight.w600);
 const notgrey12 = TextStyle(fontSize: 13,color: Colors.grey, fontWeight: FontWeight.w600);
